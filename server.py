@@ -136,6 +136,7 @@ class VideoProcessor:
                     "created_at": datetime.now().isoformat()}
 
             self.supabase.table("transcriptions").insert(data).execute()
+            logger.info("Transcription stored in transcriptions table ")
 
         except Exception as e:
             logger.exception(e)
