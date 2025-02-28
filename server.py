@@ -179,6 +179,7 @@ async def get_transcriptions(user_id: str):
         return result.data
     except Exception as e:
         logger.exception(e)
+        logger.("There was an error")
 
 
 if __name__ == "__main__":
