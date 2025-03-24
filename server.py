@@ -144,11 +144,13 @@ class VideoProcessor:
 
 # Initialise app with CORS
 app = FastAPI()
-app.add_middleware(CORSMiddleware,
-                   allow_origins=["*"],  # Update this with frontend URL in production
-                   allow_credentials=True,
-                   allow_methods=["*"],
-                   allow_headers=["*"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Next.js dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Initialise video processor
 processor = VideoProcessor()
@@ -179,7 +181,7 @@ async def get_transcriptions(user_id: str):
         return result.data
     except Exception as e:
         logger.exception(e)
-        logger.("There was an error")
+        logger.info("There was an error")
 
 
 if __name__ == "__main__":
